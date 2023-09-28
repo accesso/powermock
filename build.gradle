@@ -2,15 +2,20 @@ buildscript {
     repositories {
         mavenCentral()
         jcenter()
+	// See https://spring.io/blog/2022/12/14/notice-of-permissions-changes-to-repo-spring-io-january-2023
+	// the plugins-release repo is no longer public.  however the "propdeps-plugin" lib
+	// also hasn't been released to maven central, so the only workaround I could come up with
+	// was to switch to a snapshot version.  Won't work forever.  propdeps is a gradle plugin used for
+	// the build.
         maven {
-            url 'https://repo.spring.io/plugins-release'
+            url 'https://repo.spring.io/plugins-snapshot'
         }
         maven {
             url 'https://plugins.gradle.org/m2/'
         }
     }
     dependencies {
-        classpath 'org.springframework.build.gradle:propdeps-plugin:0.0.7'
+        classpath 'org.springframework.build.gradle:propdeps-plugin:0.0.8-SNAPSHOT'
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
         classpath 'net.researchgate:gradle-release:2.4.0'
         classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.4'
@@ -30,11 +35,11 @@ ext{
     objenesisVersion = "3.2"
     javassistVersion = "3.27.0-GA"
     junitVersion = "4.12"
-    junitJupiterVersion = "5.9.2"
+    junitJupiterVersion = "5.8.2"
     junitRulesVersion = "4.8.2"
     testngVersion = "6.9.10"
     xstreamVersion = "1.4.10"
-    mockitoVersion = "4.3.1"
+    mockitoVersion = "4.5.1"
     servletVersion = "2.5"
     jacocoVersion = "0.7.7.201606060606"
     eclipseJdt = "3.3.0-v_771"
